@@ -1,0 +1,201 @@
+﻿@model StoneClinic.Models.Appointment
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #0094ff;
+            }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <!-- Topbar -->
+        @*<div class="container-fluid bg-dark">
+            <div class="row py-2 px-lg-4">
+                <div class="text-lg-right" align="left">
+                    <div class="text-white" align="left">
+                        <small>+91 8945762157</small>
+                        <small class="px-3">|</small>
+                        <small>stonclinic@gmail.com</small>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="container-fluid bg-dark">
+            <br />
+            <br />
+        </div>
+        <!-- Navbar -->
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+
+                <img src="~/Image/Logo.jpeg" width="90" height="90" style="border-inline-style:hidden" />
+
+                <a href="index.html" class="navbar-brand ml-lg-3">
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Stone</span>Clinic</h1>
+                </a>
+
+                <div class="navbar-nav m-auto py-0">
+                    @using (Html.BeginForm("Home", "Home"))
+                    {
+                        <input type="submit" value="Home" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("PatientInfo", "Home"))
+                    {
+                        <input type="submit" value="Patient Info" class="btn btn-primary" />
+                    }
+                    @using (Html.BeginForm("DoctorInfo", "Home"))
+                    {
+                        <input type="submit" value="Doctors Info" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("ScheduleAppointment", "Home"))
+                    {
+                        <input type="submit" value="Schedule Appointment" class="btn btn-primary" />
+                    }
+                    @using (Html.BeginForm("DeleteAppointment", "Home"))
+                    {
+                        <input type="submit" value="Cancel Appointment" class="btn btn-primary" />
+                    }
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <input type="submit" value="Logout" class="btn btn-danger" />
+                    }
+                </div>
+            </nav>
+        </div>
+        <div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div align="center" class="alert-success" id="SuccessMgs"><b>@TempData["SuccessMessage"]</b></div>
+            }
+        </div>S
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container-fluid bg-light">
+        <div class="row py-2 px-lg-3 ">
+            <img src="~/Image/Appointment_logo.jpeg" width="63" height="63"  />
+            <h2 class="m-0 text-primary"><span class="text-secondary"> Schedule </span>Appointment </h2>
+        </div>
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("InsertAppiontment", "Home", FormMethod.Post))
+        {
+        <form>
+            <label>Patient ID</label>
+            @Html.TextBoxFor(item => Model.PatientID, new { required = "required" })
+
+            <label>Specialization</label>
+            @*@Html.TextBoxFor(item => Model.Specialization)*@
+            <select name="Specialization" required>
+                <option selected disabled>Select Specialization</option>
+                <option value="General">General</option>
+                <option value="Internal Medicine">Internal Medicine</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Ophthalmology">Ophthalmology</option>
+            </select>
+
+            <label>Doctor</label>
+            @*@Html.TextBoxFor(item => Model.Doctor)*@
+        <select name="Doctor" required>
+            <option selected disabled>Select Doctor</option>
+            <option value="Amanda">Amanda</option>
+            <option value="Ajay">Ajay</option>
+            <option value="Sanjay">Sanjay</option>
+            <option value="Maya">Maya</option>
+            <option value="Rohan">Rohan</option>
+            <option value="Amara">Amara</option>
+            <option value="Jasmin">Jasmin</option>
+            <option value="Priya">Priya</option>
+            <option value="Asha">Asha</option>
+            <option value="Rajesh">Rajesh</option>
+        </select>
+           
+            <label>Visit Date</label>
+            <br />
+            @*@Html.TextBoxFor(item => Model.VisitDate)*@
+            <input asp-for="VisitDate" type="date" id="VisitDate" name="VisitDate" required />
+            <span asp-validation-for="VisitDate"></span>
+            <br />
+            <br />
+            <label>Appointment Time</label>
+            @*@Html.TextBoxFor(item => Model.AppointmentTime)*@
+            <select id="AppointmentTime" name="AppointmentTime" required>
+                <option selected disabled>Select Appointment Time</option>
+                <option value="09:00-10:00 AM">09:00-10:00 AM</option>
+                <option value="10:00-11:00 AM">10:00-11:00 AM</option>
+                <option value="11:00-12:00 PM">11:00-12:00 PM</option>
+                <option value="12:00-01:00 PM">12:00-01:00 PM</option>
+                <option value="03:00-04:00 PM">03:00-04:00 PM</option>
+            </select>
+            @using (Html.BeginForm("SuccessMessage", "Home"))
+            {
+                <input type="submit" value="Submit" class="btn btn-primary">
+
+            }
+        </form>
+            
+        }
+
+    </div>
+</body>
+</html>
+<script>
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("VisitDate")[0].setAttribute('min', today);
+</script>

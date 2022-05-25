@@ -1,0 +1,73 @@
+﻿@model StoneClinic.Models.Staff
+<html>
+<head>
+    <title>Login Page</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+<body style="background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=996&t=st=1652352825~exp=1652353425~hmac=52f4a37fa1f42e57c78af9e337c5d983332e9b21950b5f240cae64663e62b5ce') ">
+
+    <header>        
+        <nav>
+            <img src="~/Image/Logo.jpeg" width="90" height="90" />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <h1 class=" text-secondary"><span class="text-primary">Stone</span>Clinic</h1>
+        </nav>
+    </header>
+
+    @using (Html.BeginForm("LoginVerify", "Home", FormMethod.Post))
+    {
+<div class="container">
+    <div id="align">
+        <form name="Login">
+            <br />
+            <br />
+            <br />
+            <table width="40%" align="center" style="background-color:#ffffff">
+
+                <tr>
+                    <td align="center" colspan="2" rowspan="1">
+                        <img src="~/Image/login01.jpeg" width="70" height="70" />
+                    </td>
+                </tr>               
+                <tr>
+                    <td align="center"><font size=4>User Name</font> </td>
+                    <td>
+                        @Html.TextBoxFor(item => Model.UserName, new { required = "required", pattern = "[A-Za-z0-9]+", title = "Special characters Not Allowed" })
+                        @Html.ValidationMessageFor(item => Model.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    
+                </tr>
+
+                <tr>
+                    <td align="center" ><font size=4>Password </font> </td>
+                    <td>
+                        @Html.PasswordFor(item => Model.Password, new { required = "required" })
+                        @Html.ValidationMessageFor(item => Model.Password)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2" rowspan="2">
+                        @using (Html.BeginForm("Home", "Home"))
+                        {
+                            <input type="submit" value="Login" size="100" style="box-sizing:border-box" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                        }  <div class="alert-danger"><b>@ViewBag.AlertMsg</b></div>
+
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    
+    
+</div>
+    }
+    
+</body>
+</html>
+
+

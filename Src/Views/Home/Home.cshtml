@@ -1,0 +1,236 @@
+﻿<html>
+<head>
+    <style>
+        nav {
+            background-color: #fff ;
+            border: 1px solid #dedede;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+            color: #888;
+            display: block;
+            margin: 8px 22px 8px 22px;
+            overflow: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        input[type=submit] {
+            color: white ;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #0094ff;
+            }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: white;            
+            padding: 1em;
+        }
+
+        footer {
+            position: fixed;
+            width: 100%;
+            font-size: small;
+            left: 0;
+            bottom: 0;
+            text-align: left;
+        }
+
+        .container {
+            position: inherit;
+            text-align: left;
+            color: white;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+<!--style="background-color:#88f5f5 "-->
+<body>
+    <header>
+
+        <!-- Topbar -->
+
+        <div class="container-fluid bg-dark">
+            <div class="px-lg-4">
+                <div class="text-lg-left">
+                    <div class="text-white">
+                        <small><b>Contact us</b></small> 
+                        &nbsp;&nbsp;
+                        <small>+91 8945762157</small>
+                        <small>|</small>
+                        <small>stonclinicdeveloper@gmail.com</small>
+                        <br/>
+                        <br />                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+
+                <img src="~/Image/Logo.jpeg" width="90" height="90" style="border-inline-style:hidden" />
+
+                <a href="#" class="navbar-brand ml-lg-3">
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Stone</span>Clinic</h1>
+                </a>
+                <div class="navbar-nav m-auto py-0">
+                    @using (Html.BeginForm("Home", "Home"))
+                    {
+                        <input type="submit" value="Home" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("PatientInfo", "Home"))
+                    {
+                        <input type="submit" value="Patient Info" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("DoctorInfo", "Home"))
+                    {
+                        <input type="submit" value="Doctors Info" class="btn btn-primary" />
+                    }
+                    @using (Html.BeginForm("ScheduleAppointment", "Home"))
+                    {
+                        <input type="submit" value="Schedule Appointment" class="btn btn-primary" />
+                    }
+                    @using (Html.BeginForm("DeleteAppointment", "Home"))
+                    {
+                        <input type="submit" value="Cancel Appointment" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <input type="submit" value="Logout" class="btn btn-danger " />
+                    }
+                </div>
+
+            </nav>
+        </div>        
+        <div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div align="center" class="alert-success" id="SuccessMgs"><b>@TempData["SuccessMessage"]</b></div>
+            }
+        </div>
+    </header>
+    
+    <div class="container" id="container">
+        <img src="~/Image/BodyContent0.png" width="1298" height="600" />
+        @*<img src="~/Image/body_Cont.png" width="1298" height="600">*@
+        @*<div class="centered" id="centered">
+                <h3>COVID-19 Resource Center</h3>
+                <p class="text-dark" size="50">
+                    <b>
+                        Now more than ever, better medicine matters.<br />
+                        Get the latest information on how COVID-19 may affect you, including vaccination, testing, symptoms, treatment, safety and current visitor policies.
+                    </b>
+                </p>
+
+            </div>*@
+    </div>
+    <div class="container">
+        <h2 class="text-dark">
+            SERVICE
+        </h2>
+        <div class=" row py-2 px-lg-3 ">
+            <img src="~/Image/servicelogo.jpeg" width="100" height="100" />
+            <p class="text-dark">
+                Hospital Services refers to the clinical services provided by the Hospital, as well as the operational activities that support those clinical services, which are funded in whole or in part by the LHIN, and includes the type, volume, frequency, and availability of Hospital Services; <br />
+                HSAA Indicator Technical Specifications refers to the document titled "HSAA Indicator Technical Specifications," as amended or replaced from time to time.<br />
+                Hospital services are the foundation of a hospital's services. <br />
+                They are frequently influenced by the demands or wishes of the hospital's key users, with the goal of making the hospital a one-stop or core institution of the local community or medical network. Hospitals are facilities with basic services and personnel—usually medicine and surgical departments—that provide clinical and other services for specific diseases and ailments, as well as emergency care. Hospital services include everything from basic health care to training and research for major medical school centres, as well as services created by a network of industry-owned institutions such as health maintenance organisations.
+            </p>
+
+            <h3 class="text-dark">Below mentioned are some of the hospital services</h3>
+
+            <div class="container-fluid bg-light">
+                <div class=" row py-2 px-lg-3 ">
+                    <img src="~/Image/emergencylogo.jpeg" width="63" height="63" /> &nbsp;&nbsp;&nbsp;
+                    <p class="text-dark"> Emergency room services</p>
+                </div>
+            </div>
+            <div class="container-fluid bg-light">
+                <div class=" row py-2 px-lg-3 ">
+                    <img src="~/Image/hospitalitylogo.jpeg" width="63" height="63" />&nbsp;&nbsp;&nbsp;
+                    <p class="text-dark"> Short-term hospitalization</p>
+                </div>
+            </div>
+            <div class="container-fluid bg-light">
+                <div class=" row py-2 px-lg-3 ">
+                    <img src="~/Image/x-rayLogo.jpeg" width="63" height="63" />&nbsp;&nbsp;&nbsp;
+                    <p class="text-dark"> X-ray/radiology services</p>
+                </div>
+            </div>
+            <div class="container-fluid bg-light">
+                <div class=" row py-2 px-lg-3 ">
+                    <img src="~/Image/surgicalLogo.jpeg" width="63" height="63" />&nbsp;&nbsp;&nbsp;
+                    <p class="text-dark"> General and specialty surgical services</p>
+                </div>
+            </div>
+            <div class="container-fluid bg-light">
+                <div class=" row py-2 px-lg-3 ">
+                    <img src="~/Image/bloodserLogo.jpeg" width="63" height="63" />&nbsp;&nbsp;&nbsp;
+                    <p class="text-dark"> Blood services</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <h2 class="text-dark">
+            ABOUT STONE CLINIC
+        </h2>
+        <br />
+        <p class="text-dark">
+            Stone Clinic  International offers the best in health care to patients who have come to trust the hospital as one of India’s best.  <br />
+            A 1000-bed facility offering superlative treatment in 63 specialities, Stone Clinic proudly lays claim to a team of world-class professionals who use our state-of-the-art infrastructure and cutting-edge technology to heal and give hope to our patients.<br />
+            Consistently adjudged as a leader in healthcare, Stone Clinic International attracts patients from 130 countries who seek our expertise in moving towards wellness
+        </p>
+        @using (Html.BeginForm("About", "Home"))
+        {
+            <input type="submit" value="Read More" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+        }
+    </div>
+
+    <br /><br /><br /><br /><br />
+    <!-- Footer Start -->
+    <footer class="container-fluid bg-dark">
+        <div style="font-size:smaller">
+            <p style="color:whitesmoke">Copyright &copy; stoneclinic@gmail.com</p>
+        </div>
+
+        <ul>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+                <a href="#">Disclaimer</a>
+            </li>
+        </ul>
+    </footer>
+    <!-- Footer End -->
+
+
+
+</body>
+</html>
+
+
+

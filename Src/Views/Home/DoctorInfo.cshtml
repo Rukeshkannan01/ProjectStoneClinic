@@ -1,0 +1,195 @@
+﻿@model StoneClinic.Models.Doctor
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #0094ff;
+            }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <!-- Topbar -->
+        <div class="container-fluid bg-dark">
+            <br />
+            <br />
+        </div>
+        <!-- Navbar -->
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+
+                <img src="~/Image/Logo.jpeg" width="90" height="90" style="border-inline-style:hidden" />
+
+                <a href="#" class="navbar-brand ml-lg-3">
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Stone</span>Clinic</h1>
+                </a>
+                <div class="navbar-nav m-auto py-0">
+                    @using (Html.BeginForm("Home", "Home"))
+                    {
+                        <input type="submit" value="Home" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("PatientInfo", "Home"))
+                    {
+                        <input type="submit" value="Patient Info" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("DoctorInfo", "Home"))
+                    {
+                        <input type="submit" value="Doctors Info" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("ScheduleAppointment", "Home"))
+                    {
+                        <input type="submit" value="Schedule Appointment" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("DeleteAppointment", "Home"))
+                    {
+                        <input type="submit" value="Cancel Appointment" class="btn btn-primary " />
+                    }
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <input type="submit" value="Logout" class="btn btn-danger " />
+                    }
+                </div>
+            </nav>
+        </div>
+        <div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div align="center" class="alert-success" id="SuccessMgs"><b>@TempData["SuccessMessage"]</b></div>
+            }
+        </div>
+
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container-fluid bg-light">
+        <div class="row py-2 px-lg-3 ">
+            <img src="~/Image/doctor_logo.jpg" width="60" height="60" />
+            <h2 class="m-0 text-primary"><span class="text-secondary"> Add </span>Doctor </h2>
+        </div>
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("AddDoctor", "Home", FormMethod.Post))
+        {
+        <form>
+            <label>First Name</label>
+            @Html.TextBoxFor(item => Model.FirstName, new { required = "required" })
+
+
+            <label>Last Name</label>
+            @Html.TextBoxFor(item => Model.LastName, new { required = "required" })
+
+            <label>Gender</label>
+            @*@Html.TextBoxFor(item => Model.Sex)*@
+
+            <select  name="Sex" required>
+            <option selected disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+        </select>
+
+            @*@Html.DropDownListFor(item => Model.Sex,
+           new SelectList(Enum.GetValues(typeof(Gender))), "Select Gender")*@
+
+            <label>Specialization</label>
+            @*@Html.TextBoxFor(item => Model.Specialization)*@
+            <select name="Specialization" required>
+                <option selected disabled>Select Specialization</option>
+                <option value="General">General</option>
+                <option value="Internal Medicine">Internal Medicine</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Ophthalmology">Ophthalmology</option>
+            </select>
+            <label>Visiting Hours</label>
+            @*@Html.TextBoxFor(item => Model.VisitingHours)*@
+            <select id="VisitingHours" name="VisitingHours" required>
+                <option selected disabled>Select Visit Hours</option>
+                <option value="09:00-10:00 AM">09:00-10:00 AM</option>
+                <option value="11:00-01:00 PM">11:00-01:00 PM</option>
+                <option value="02:00-04:00 PM">02:00-04:00 PM</option>              
+            </select>
+
+            @using (Html.BeginForm("SuccessMessage", "Home"))
+            {
+                <input type="submit" value="Submit" class="btn btn-primary ">
+            }
+
+        </form>
+        }
+    </div>
+
+</body>
+</html>
+
+@*@section scripts{
+    <script type="text/javascript">
+
+    function SuccessModal(StrMessage) {
+        var div = document.getElementById("SuccessAlertBody");
+        div.innerHTML = StrMessage;
+        $('ModalSuccess').modal('show');
+    }
+
+    $(document).ready(function () {
+        var msg = "@TempData["SuccessMessage"]";
+        if (msg)
+            SuccessModal(msg);
+    });
+
+    </script>
+
+}*@

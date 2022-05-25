@@ -1,0 +1,173 @@
+﻿@model IEnumerable<StoneClinic.Models.Appointment>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #0094ff;
+            }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: white;
+            /*            font-family: 'Exo 2', sans-serif;
+        */ padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Topbar -->
+        <div class="container-fluid bg-dark">
+            <div class="row py-2 px-lg-4">
+                <div class="text-lg-right" align="left">
+                    <div class="text-white" align="left">
+                        <small>+91 8945762157</small>
+                        <small class="px-3">|</small>
+                        <small>stonclinic@gmail.com</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+
+                <img src="~/Image/Logo.jpeg" width="90" height="90" style="border-inline-style:hidden" />
+
+                <a href="#" class="navbar-brand ml-lg-3">
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Stone</span>Clinic</h1>
+                </a>
+
+                <div class="navbar-nav m-auto py-0">
+                    @using (Html.BeginForm("Home", "Home"))
+                    {
+                        <input type="submit" value="Home" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                    }
+                    @using (Html.BeginForm("PatientInfo", "Home"))
+                    {
+                        <input type="submit" value="Patient Info" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                    }
+                    @using (Html.BeginForm("DoctorInfo", "Home"))
+                    {
+                        <input type="submit" value="Doctors Info" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                    }
+                    @using (Html.BeginForm("ScheduleAppointment", "Home"))
+                    {
+                        <input type="submit" value="Schedule Appointment" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                    }
+                    @using (Html.BeginForm("DeleteAppointment", "Home"))
+                    {
+                        <input type="submit" value="Cancel Appointment" class="btn btn-primary py-2 px-4 d-none d-lg-block" />
+                    }
+                    @using (Html.BeginForm("Login", "Home"))
+                    {
+                        <input type="submit" value="Logout" class="btn btn-danger py-2 px-4 d-none d-lg-block" />
+                    }
+                </div>
+            </nav>
+        </div>
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container-fluid bg-light">
+        <div class="row py-2 px-lg-3 ">
+            <img src="~/Image/CancelAppointment_logo.jpeg" width="60" height="60" />
+            <h2 class="m-0 text-primary"><span class="text-secondary">Cancel </span>Appointment </h2>
+        </div>
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("ShowById", "Home"))
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayName("Patient ID")</th>
+
+                        <th>@Html.DisplayName("Specialization")</th>
+
+                        <th>@Html.DisplayName("Doctor")</th>
+
+                        <th>@Html.DisplayName("Visit Date")</th>
+
+                        <th>@Html.DisplayName("AppointmentTime")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PatientID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Specialization)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Doctor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AppointmentTime)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+
+
+    </div>
+
+</body>
+</html>
+
+
